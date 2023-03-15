@@ -35,18 +35,14 @@ app.post("/", async (req, res) => {
     const appKey = `${API_KEY}`;
     let url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&units=" + unit + "&appid="+ appKey + "";
 
-    // A native node module to make http request(here it is get request) to another server 
+    // using axios as it easier to catch error in axios than in https.get
 
     try {
 		const response = await axios({
 			url: url,
 			method: "get",
 		});
-
-        // res.status(200).json(response.data);
 		    const weatherData = response.data;
-            // console.log(response.data)
-            // res.send("we recieved your request")
             const temp = weatherData.main.temp;
             const city = weatherData.name;
             const icon = weatherData.weather[0].icon;
@@ -55,25 +51,7 @@ app.post("/", async (req, res) => {
             res.render('report', {temperature: temp, imgUrl: imageURL, descrpt: description, cityName: city});
 	} catch (err) {
         res.status(500).render('error', {errorMessage: err});
-	}
-
-    // https.get(url, function(response){
-       
-    //     response.on("data", function (data) {
-
-            
-    //         weatherData = JSON.parse(data);
-    //         const temp = weatherData.main.temp;
-    //         const city = weatherData.name;
-    //         const icon = weatherData.weather[0].icon;
-    //         const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-    //         const description = weatherData.weather[0].description;
-    //         res.render('report', {temperature: temp, imgUrl: imageURL, descrpt: description, cityName: city});
-    //     }) 
-    // }).on('error', (e)=>{
-    //     console.error(e);
-    // })
-    
+	}   
 })
 
 // listen to the server at port 3000
