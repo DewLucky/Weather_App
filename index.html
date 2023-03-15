@@ -5,12 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <form action="/" method="post">
-        <label for="">City name: </label>
-            <input type="text" name="cityName">
-            <button type="submit">Go</button>       
-    </form>
+    <div class="container">
+        <h2>Weather App</h2>
+        <div class="form-container">
+            <form action="/" method="post">
+                <div class="city-container">
+                    <label for="cityName">City name: </label>
+                    <input class="city-input" id="cityName" type="text" name="cityName">
+                </div>
+                <button class="go-btn btn" type="submit">Go</button>
+            </form>
+        </div>       
+    </div>
 </body>
 </html>
