@@ -17,16 +17,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 // handling get request
 app.get("/", function (req, res) {
-    console.log("get recieved")
     res.sendFile(__dirname + "/index.html");
 })
-
-var options = {
-    hostname: 'encrypted.google.com',
-    port: 443,
-    path: '/',
-    method: 'GET'
-  };
 
 // handling post request
 app.post("/", async (req, res) => {
@@ -35,8 +27,8 @@ app.post("/", async (req, res) => {
     const appKey = `${API_KEY}`;
     let url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&units=" + unit + "&appid="+ appKey + "";
 
+    
     // using axios as it easier to catch error in axios than in https.get
-
     try {
 		const response = await axios({
 			url: url,
@@ -54,7 +46,7 @@ app.post("/", async (req, res) => {
 	}   
 })
 
-// listen to the server at port 3000
+// listen to server at provided port 
 app.listen(process.env.PORT, function () {
     console.log("server started");
 })
