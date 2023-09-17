@@ -34,7 +34,7 @@ app.post("/", async (req, res) => {
 			url: url,
 			method: "get",
 		});
-		    const weatherData = response.data;
+		    const weatherData = await response.data;
             const temp = weatherData.main.temp;
             const city = weatherData.name;
             const icon = weatherData.weather[0].icon;
